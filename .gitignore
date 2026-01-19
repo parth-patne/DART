@@ -112,6 +112,7 @@ plots/
 *.jpg
 *.jpeg
 !.github/*.png
+!DART-Architecture.png
 
 # macOS
 .DS_Store
