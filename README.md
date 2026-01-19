@@ -10,7 +10,6 @@
 <p align="center">
   <strong>Input-Difficulty-Aware Adaptive Threshold Mechanism for Efficient Deep Neural Network Inference</strong>
 </p>
----
 
 ## Overview
 
