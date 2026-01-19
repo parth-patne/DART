@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/ICCAI_2025-Paper-success?style=for-the-badge" alt="ICCAI 2025">
+  <img src="https://img.shields.io/badge/ICCAI_2026-Paper-success?style=for-the-badge" alt="ICCAI 2026">
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch">
   <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License">
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  Published at the <a href="https://www.iccai.net/"><strong>International Conference on Communications and Artificial Intelligence (ICCAI 2025)</strong></a>
+  Accepted at the <a href="https://www.iccai.net/"><strong>International Conference on Communications and Artificial Intelligence (ICCAI 2026)</strong></a>
 </p>
 
 ---
@@ -62,19 +62,6 @@ pip install -r requirements.txt
 
 # Run experiments
 python dynamic-alexnet-early-exit.py
-```
-
----
-
-## Citation
-
-```bibtex
-@inproceedings{dart2025iccai,
-  title={DART: Input-Difficulty-Aware Adaptive Threshold for Early-Exit DNNs},
-  author={Patne, Parth},
-  booktitle={Proceedings of the International Conference on Communications and Artificial Intelligence (ICCAI)},
-  year={2025}
-}
 ```
 
 ---
