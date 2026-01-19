@@ -10,11 +10,6 @@
 <p align="center">
   <strong>Input-Difficulty-Aware Adaptive Threshold Mechanism for Efficient Deep Neural Network Inference</strong>
 </p>
-
-<p align="center">
-  Accepted at the <a href="https://www.iccai.net/"><strong>International Conference on Communications and Artificial Intelligence (ICCAI 2026)</strong></a>
-</p>
-
 ---
 
 ## Overview
