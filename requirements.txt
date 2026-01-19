@@ -1,0 +1,26 @@
+# DART: Dynamic Adaptive Real-time Thresholding for Early-Exit DNNs
+# Core dependencies
+
+# PyTorch - Deep Learning Framework
+torch>=1.9.0
+torchvision>=0.10.0
+
+# Data Processing & Scientific Computing
+numpy>=1.19.0
+pandas>=1.3.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Machine Learning Utilities
+scikit-learn>=0.24.0
+
+# GPU Monitoring (optional)
+pynvml>=11.0.0
+
+# Image Processing (used by LeViT)
+timm>=0.4.12
+
+# For LeViT distributed training (optional)
+# submitit>=1.4.0
