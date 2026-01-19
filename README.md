@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License">
 </p>
 
-<h1 align="center">🎯 DART: Dynamic Adaptive Real-time Thresholding for Early-Exit DNNs</h1>
+<h1 align="center">DART: Dynamic Adaptive Real-time Thresholding for Early-Exit DNNs</h1>
 
 <p align="center">
   <strong>Input-Difficulty-Aware Adaptive Threshold Mechanism for Efficient Deep Neural Network Inference</strong>
@@ -17,11 +17,11 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
-**DART** introduces a novel approach to early-exit deep neural networks by dynamically adjusting confidence thresholds based on input difficulty. Unlike traditional static threshold methods, DART computes a **difficulty score (α)** for each input sample and uses reinforcement learning to optimize exit decisions, achieving superior accuracy-efficiency trade-offs.
+**DART** introduces a novel approach to early-exit deep neural networks by dynamically adjusting confidence thresholds based on input difficulty. Unlike traditional static threshold methods, DART computes a **difficulty score (alpha)** for each input sample and uses reinforcement learning to optimize exit decisions, achieving superior accuracy-efficiency trade-offs.
 
-### 🔑 Key Contributions
+### Key Contributions
 
 1. **Difficulty-Aware Threshold Adaptation**: A lightweight preprocessing module computes input difficulty using edge density, pixel variance, and gradient complexity metrics.
 
@@ -33,7 +33,7 @@
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -41,7 +41,7 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  ┌──────────────────┐     ┌───────────────────┐     ┌──────────────────┐   │
-│  │ Input Image (x)  │────▶│ Difficulty        │────▶│ α ∈ [0, 1]       │   │
+│  │ Input Image (x)  │────▶│ Difficulty        │────▶│ alpha ∈ [0, 1]   │   │
 │  └──────────────────┘     │ Estimator         │     │ (Difficulty      │   │
 │                           │ ┌───────────────┐ │     │  Score)          │   │
 │                           │ │ Edge Density  │ │     └────────┬─────────┘   │
@@ -51,7 +51,7 @@
 │                           │ └───────────────┘ │     ┌──────────────────┐   │
 │                           └───────────────────┘     │ Adaptive         │   │
 │                                                     │ Threshold        │   │
-│  ┌─────────────────────────────────────────────┐   │ τ(α, i)          │   │
+│  ┌─────────────────────────────────────────────┐   │ tau(alpha, i)    │   │
 │  │        Backbone Network with Exits          │   └────────┬─────────┘   │
 │  │                                             │            │             │
 │  │  ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐    │            │             │
@@ -59,13 +59,13 @@
 │  │  │  1  │   │  2  │   │ ... │   │  N  │    │                          │
 │  │  └──┬──┘   └──┬──┘   └──┬──┘   └──┬──┘    │                          │
 │  │     │         │         │         │       │                          │
-│  │  [Conf₁]   [Conf₂]   [Conf₃]   [ConfN]    │                          │
+│  │  [Conf1]   [Conf2]   [Conf3]   [ConfN]    │                          │
 │  └─────┼─────────┼─────────┼─────────┼───────┘                          │
 │        │         │         │         │                                   │
 │        ▼         ▼         ▼         ▼                                   │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
 │  │              Joint Exit Policy (Q-Learning / DP)                  │   │
-│  │  • State: (α_bin, exit_idx, confidence_bin)                      │   │
+│  │  • State: (alpha_bin, exit_idx, confidence_bin)                  │   │
 │  │  • Action: EXIT or CONTINUE                                       │   │
 │  │  • Reward: Accuracy + Efficiency + Difficulty Adjustment          │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
@@ -75,25 +75,25 @@
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 DART/
-├── 📄 README.md                         # This file
-├── 📄 LICENSE                           # MIT License
-├── 📄 DART.pdf                          # Research paper
+├── README.md                            # This file
+├── LICENSE                              # MIT License
+├── DART.pdf                             # Research paper
 │
-├── 🐍 dynamic-alexnet-early-exit.py     # DART implementation for AlexNet
+├── dynamic-alexnet-early-exit.py        # DART implementation for AlexNet
 │   └── Full implementation with 6 exit points, difficulty estimation,
 │       Q-Learning agents, and comprehensive evaluation
 │
-├── 🐍 dynamic-resnet18-early-exits.py   # DART implementation for ResNet-18
+├── dynamic-resnet18-early-exits.py      # DART implementation for ResNet-18
 │   └── 5 exit points adapted for residual connections
 │
-├── 🐍 dynamic-vgg-early-exits.py        # DART implementation for VGG
+├── dynamic-vgg-early-exits.py           # DART implementation for VGG
 │   └── 6 exit points for deeper VGG architecture
 │
-└── 📁 LeViT-main/                       # Vision Transformer adaptations
+└── LeViT-main/                          # Vision Transformer adaptations
     ├── enhanced_adaptive_levit.py       # DART-enhanced LeViT with 4 exits
     ├── enhanced_levit_training.py       # Training scripts for LeViT
     ├── final_clean_comparison.py        # Baseline comparison utilities
@@ -105,11 +105,11 @@ DART/
 
 ---
 
-## 🧠 Core Components
+## Core Components
 
 ### 1. Difficulty Estimator (`DifficultyEstimator`)
 
-A lightweight preprocessing module that computes a difficulty score α ∈ [0, 1] for each input:
+A lightweight preprocessing module that computes a difficulty score alpha ∈ [0, 1] for each input:
 
 ```python
 class DifficultyEstimator(nn.Module):
@@ -132,7 +132,7 @@ Learns optimal threshold coefficient adjustments:
 ```python
 class ThresholdQLearningAgent:
     def __init__(self, n_exits, alpha_bins=10, epsilon=0.1, alpha=0.1, gamma=0.9):
-        # State: (α_bin, exit_idx)
+        # State: (alpha_bin, exit_idx)
         # Actions: [-0.1, 0.0, +0.1] coefficient adjustments
 ```
 
@@ -158,7 +158,7 @@ class JointExitPolicy:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -186,7 +186,7 @@ from dynamic-alexnet-early-exit import FullLayerAlexNet, DifficultyEstimator
 # Initialize model with all DART features
 model = FullLayerAlexNet(
     num_classes=10,
-    use_difficulty_scaling=True,    # Enable α computation
+    use_difficulty_scaling=True,    # Enable alpha computation
     use_joint_policy=True,          # Enable DP-based exit policy
     use_cost_awareness=True         # Enable cost-aware inference
 )
@@ -206,7 +206,7 @@ predictions, exit_points, costs = model(images)
 # Get analysis data after inference
 analysis = model.get_analysis_data()
 
-# Alpha distribution
+# alpha distribution
 print(f"Mean difficulty: {np.mean(analysis['alpha_values']):.3f}")
 
 # Exit point distribution
@@ -218,30 +218,30 @@ print(f"Exit distribution: {exit_counts}")
 
 ---
 
-## 📊 Experimental Results
+## Experimental Results
 
 ### Accuracy vs. Computational Savings
 
 | Method | CIFAR-10 Acc. | FLOPs Reduction | Throughput Gain |
 |--------|---------------|-----------------|-----------------|
-| Baseline (No EE) | 91.2% | 0% | 1.0× |
-| Static Threshold | 89.8% | 35% | 1.4× |
-| BranchyNet | 90.1% | 32% | 1.3× |
-| **DART (Ours)** | **90.9%** | **45%** | **1.7×** |
+| Baseline (No EE) | 91.2% | 0% | 1.0x |
+| Static Threshold | 89.8% | 35% | 1.4x |
+| BranchyNet | 90.1% | 32% | 1.3x |
+| **DART (Ours)** | **90.9%** | **45%** | **1.7x** |
 
 ### Exit Distribution Analysis
 
 DART adaptively routes samples based on difficulty:
 
-| Difficulty (α) | Exit 1-2 | Exit 3-4 | Exit 5-6 |
+| Difficulty (alpha) | Exit 1-2 | Exit 3-4 | Exit 5-6 |
 |---------------|----------|----------|----------|
-| Easy (α < 0.3) | 65% | 25% | 10% |
-| Medium (0.3 ≤ α < 0.7) | 20% | 55% | 25% |
-| Hard (α ≥ 0.7) | 5% | 20% | 75% |
+| Easy (alpha < 0.3) | 65% | 25% | 10% |
+| Medium (0.3 <= alpha < 0.7) | 20% | 55% | 25% |
+| Hard (alpha >= 0.7) | 5% | 20% | 75% |
 
 ---
 
-## 🔧 Configuration Options
+## Configuration Options
 
 ### Model Initialization
 
@@ -270,7 +270,7 @@ difficulty_estimator = DifficultyEstimator(
 ```python
 agent = ThresholdQLearningAgent(
     n_exits=6,        # Number of exit points
-    alpha_bins=10,    # Discretization bins for α
+    alpha_bins=10,    # Discretization bins for alpha
     epsilon=0.1,      # Exploration rate
     alpha=0.1,        # Learning rate
     gamma=0.9         # Discount factor
@@ -279,19 +279,19 @@ agent = ThresholdQLearningAgent(
 
 ---
 
-## 📈 Visualization
+## Visualization
 
 The codebase includes comprehensive visualization utilities:
 
-- **Confusion matrices** per exit point
-- **Exit distribution histograms**
-- **Alpha (difficulty) distribution plots**
-- **Accuracy vs. computation trade-off curves**
-- **Real-time GPU monitoring**
+- Confusion matrices per exit point
+- Exit distribution histograms
+- alpha (difficulty) distribution plots
+- Accuracy vs. computation trade-off curves
+- Real-time GPU monitoring
 
 ---
 
-## 📚 Citation
+## Citation
 
 If you find this work useful, please cite our paper:
 
@@ -306,7 +306,7 @@ If you find this work useful, please cite our paper:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please feel free to submit issues and pull requests.
 
@@ -318,13 +318,13 @@ We welcome contributions! Please feel free to submit issues and pull requests.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - LeViT implementation adapted from [Facebook Research](https://github.com/facebookresearch/LeViT)
 - Inspired by early-exit works including BranchyNet, EENet, and RACENet
@@ -333,5 +333,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ---
 
 <p align="center">
-  <strong>⭐ Star this repository if you find it helpful!</strong>
+  <strong>Star this repository if you find it helpful!</strong>
 </p>
